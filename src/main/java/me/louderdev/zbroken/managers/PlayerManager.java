@@ -39,6 +39,7 @@ public class PlayerManager {
             data.setStoredItem((List<ItemStack>) fileConfiguration.getList("storedItem"));
         }
 
+        data.setLoaded(true);
         return data;
     }
 

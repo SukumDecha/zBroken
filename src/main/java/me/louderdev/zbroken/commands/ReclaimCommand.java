@@ -2,6 +2,7 @@ package me.louderdev.zbroken.commands;
 
 import lombok.RequiredArgsConstructor;
 import me.louderdev.zbroken.ZBroken;
+import me.louderdev.zbroken.entitys.PlayerData;
 import me.louderdev.zbroken.utils.CC;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,12 +17,19 @@ public class ReclaimCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if(sender == null || !(sender instanceof Player)) {
+        if(!(sender instanceof Player)) {
             sender.sendMessage(CC.RED + "Only player can execute this command.");
             return false;
         }
 
-        plugin.getMenuManager().openBackpack((Player) sender);
+        Player player = (Player) sender;
+        PlayerData data = plugin.getPlayerManager().getPlayerDataByUuid(player.getUniqueId());
+
+        if(!data.isLoaded()) {
+            plugin.getPlayerManager().load(player);
+        }
+
+        plugin.getMenuManager().openBackpack(player);
         return true;
     }
 }

@@ -15,8 +15,9 @@ import java.util.*;
 @Getter @Setter
 public class PlayerData {
 
-    private UUID uuid;
+    private final UUID uuid;
     private String name;
+    private boolean loaded;
     private List<ItemStack> storedItem;
 
 
@@ -25,28 +26,4 @@ public class PlayerData {
         this.storedItem = new ArrayList<>();
     }
 
-    public void load() {
-        FileConfiguration fileConfiguration = PlayerConfig.getPlayerConfig(uuid);
-        this.name = fileConfiguration.getString("name");
-
-        if (fileConfiguration.contains("storedItem")) {
-            this.storedItem = (List<ItemStack>) fileConfiguration.get("storedItem");
-        }
-    }
-
-    private void save() {
-        File file = new File(ZBroken.get().getDataFolder(), "userdata/" + uuid + ".yml");
-        FileConfiguration configuration = YamlConfiguration.loadConfiguration(file);
-        configuration.set("name", name);
-
-        if(storedItem.size() > 0) {
-            configuration.set("storedItem", storedItem);
-        }
-
-        try {
-            configuration.save(file);
-        } catch (IOException e) {
-            ZBroken.get().getLogger().warning("Could not save player config: " + name);
-        }
-    }
 }
