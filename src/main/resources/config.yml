@@ -1,0 +1,31 @@
+CONFIG:
+  ITEM_PRICE: 20000
+  ALLOWED_ITEM:
+    - "DIAMOND_PICKAXE"
+    - "IRON_PICKAXE"
+    - "WOODEN_PICKAXE"
+  INVENTORY:
+    BACKPACK_MENU:
+      TITLE: "&6Pick your broken item here..."
+      ITEM_LORE:
+        - ""
+        - "&7Click to view more options"
+    ACTION_MENU:
+      TITLE: "&aSelect your action"
+      RECLAIM_BUTTON:
+        NAME: "&aClick to reclaim"
+        LORE:
+          - ""
+          - "&7You need to pay &e20,000$"
+          - "&7to bring back this item."
+      REMOVE_BUTTON:
+        NAME: "&cClick to remove"
+        LORE:
+          - ""
+          - "&7If you click this button"
+          - "&7your item will be gone for ever."
+MESSAGE:
+  ITEM_BROKE: "&5[Reclaim] &7ไอเท็มของคุณได้พังแล้ว สามารถรับได้ที่ &d/reclaim"
+  SUCCESS: "&5[Reclaim] &aคุณได้ชำระเงินเพื่อเอาไอเท็มคืนมาแล้วครับ."
+  FAIL: "&5[Reclaim] &cคุณมีเงินไม่เพียงพอ."
+  REMOVE: "&5[Reclaim] &cคุณได้ลบไอเท็มชิ้้นนี้ไปแล้ว."

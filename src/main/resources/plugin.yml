@@ -1,0 +1,9 @@
+name: zBroken
+version: '${project.version}'
+main: me.louderdev.zbroken.ZBroken
+api-version: 1.20
+depend: [SmartInvs]
+commands:
+  reclaim:
+    description: Open reclaim invnetory
+    usage: /reclaim
