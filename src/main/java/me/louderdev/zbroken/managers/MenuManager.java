@@ -11,11 +11,13 @@ import static me.louderdev.zbroken.configs.PluginConfig.getYamlConfig;
 
 public class MenuManager {
 
-    public static SmartInventory BACKPACK_MENU = SmartInventory.builder()
+    public SmartInventory getBackPackMenu() {
+        return SmartInventory.builder()
                 .provider(new BackpackProvider())
                 .size(3, 9)
                 .title(CC.translate(getYamlConfig().getString("CONFIG.INVENTORY.BACKPACK_MENU.TITLE")))
                 .build();
+    }
 
 
     public SmartInventory getActionMenu(ItemStack stack) {
@@ -26,7 +28,7 @@ public class MenuManager {
                 .build();
     }
     public void openBackpack(Player player) {
-        BACKPACK_MENU.open(player);
+        getBackPackMenu().open(player);
     }
 
     public void openAction(Player player, ItemStack stack) {

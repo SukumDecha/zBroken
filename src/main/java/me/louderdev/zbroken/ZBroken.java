@@ -28,6 +28,7 @@ public final class ZBroken extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        copyConfig();
 
         if(getServer().getPluginManager().getPlugin("PlaceHolderAPI") != null) {
             usingPlaceHolderAPI = true;
@@ -68,5 +69,10 @@ public final class ZBroken extends JavaPlugin {
 
     public static ZBroken get() {
         return instance;
+    }
+
+    private void copyConfig() {
+        getConfig().options().copyDefaults(true);
+        saveConfig();
     }
 }
