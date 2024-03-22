@@ -42,7 +42,7 @@ public final class ZBroken extends JavaPlugin {
 
         //Register listeners
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new ItemListener(this), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new ItemListener(playerManager), this);
 
         //Register commands
         getCommand("reclaim").setExecutor(new ReclaimCommand(this));

@@ -4,6 +4,7 @@ import lombok.Getter;
 import me.louderdev.zbroken.ZBroken;
 import me.louderdev.zbroken.configs.PlayerConfig;
 import me.louderdev.zbroken.entitys.PlayerData;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -28,6 +29,12 @@ public class PlayerManager {
         FileConfiguration fileConfiguration = PlayerConfig.getPlayerConfig(player.getUniqueId());
         PlayerData data = getPlayerDataByUuid(player.getUniqueId());
 
+
+        if(data.isLoaded()) {
+            Bukkit.broadcastMessage(data.getStoredItem().toString());
+            return data;
+        }
+
         if(fileConfiguration.contains("name")) {
             data.setName(fileConfiguration.getString("name"));
         } else {
@@ -49,17 +56,21 @@ public class PlayerManager {
         PlayerData data = getPlayerDataByUuid(player.getUniqueId());
 
         configuration.set("name", data.getName());
-
-        if (!data.getStoredItem().isEmpty()) {
-            configuration.set("storedItem", data.getStoredItem());
-        }
+        configuration.set("storedItem", data.getStoredItem());
 
         try {
             configuration.save(file);
+            ZBroken.get().getLogger().warning("Saving data: " + data.getName() + " | " + data.getStoredItem().toString());
         } catch (IOException e) {
             ZBroken.get().getLogger().warning("Could not save player config: " + data.getName());
         }
 
         return data;
+    }
+
+    public void saveAsync(Player player) {
+        Bukkit.getScheduler().runTaskAsynchronously(ZBroken.get(), () -> {
+            save(player);
+        });
     }
 }

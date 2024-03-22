@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.louderdev.zbroken.ZBroken;
 import me.louderdev.zbroken.configs.PluginConfig;
 import me.louderdev.zbroken.entitys.PlayerData;
+import me.louderdev.zbroken.managers.PlayerManager;
 import me.louderdev.zbroken.utils.CC;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -21,7 +22,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class ItemListener implements Listener {
 
-    private final ZBroken plugin;
+    private final PlayerManager playerManager;
     private final Set<Material> allowedMats = PluginConfig.getAllowedMaterial();
 
     @EventHandler
@@ -35,7 +36,7 @@ public class ItemListener implements Listener {
         player.getInventory().remove(stack);
         stack.setDurability((short) 0);
 
-        PlayerData data = plugin.getPlayerManager().getPlayerDataByUuid(player.getUniqueId());
+        PlayerData data = playerManager.getPlayerDataByUuid(player.getUniqueId());
         data.getStoredItem().add(stack.clone());
 
         player.sendMessage(CC.translate(PluginConfig.ITEM_BROKE_MESSAGE));

@@ -17,7 +17,7 @@ public class PlayerData {
 
     private final UUID uuid;
     private String name;
-    private boolean loaded;
+    private boolean loaded = false;
     private List<ItemStack> storedItem;
 
 

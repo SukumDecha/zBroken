@@ -26,7 +26,7 @@ public class PlayerListener implements Listener {
     public void onQuit(PlayerQuitEvent e) {
         Player player = e.getPlayer();
 
-        plugin.getPlayerManager().save(player);
+        plugin.getPlayerManager().saveAsync(player);
     }
 
 
