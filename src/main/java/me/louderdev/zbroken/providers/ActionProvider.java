@@ -40,6 +40,8 @@ public class ActionProvider implements InventoryProvider {
                 player.getInventory().addItem(item.clone());
                 player.sendMessage(CC.translate(PluginConfig.SUCCESS_MESSAGE));
                 player.closeInventory();
+
+                plugin.getPlayerManager().saveAsync(player);
                 return;
             }
 
@@ -53,6 +55,8 @@ public class ActionProvider implements InventoryProvider {
             data.getStoredItem().remove(item);
             player.sendMessage(CC.translate(PluginConfig.REMOVE_MESSAGE));
             player.closeInventory();
+
+            plugin.getPlayerManager().saveAsync(player);
         }));
     }
 

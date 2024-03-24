@@ -38,6 +38,7 @@ public class ItemListener implements Listener {
 
         PlayerData data = playerManager.getPlayerDataByUuid(player.getUniqueId());
         data.getStoredItem().add(stack.clone());
+        playerManager.saveAsync(player);
 
         player.sendMessage(CC.translate(PluginConfig.ITEM_BROKE_MESSAGE));
     }
