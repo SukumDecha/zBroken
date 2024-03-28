@@ -31,7 +31,6 @@ public class PlayerManager {
 
 
         if(data.isLoaded()) {
-            Bukkit.broadcastMessage(data.getStoredItem().toString());
             return data;
         }
 
@@ -60,7 +59,6 @@ public class PlayerManager {
 
         try {
             configuration.save(file);
-            ZBroken.get().getLogger().warning("Saving data: " + data.getName() + " | " + data.getStoredItem().toString());
         } catch (IOException e) {
             ZBroken.get().getLogger().warning("Could not save player config: " + data.getName());
         }
