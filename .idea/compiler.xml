@@ -10,8 +10,5 @@
         <module name="zBroken" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="zBroken" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

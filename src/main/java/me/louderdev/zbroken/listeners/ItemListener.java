@@ -25,12 +25,12 @@ public class ItemListener implements Listener {
     private final PlayerManager playerManager;
     private final Set<Material> allowedMats = PluginConfig.getAllowedMaterial();
 
+    private final List<String> blacklistedEnchants = PluginConfig.getBlacklistedEnchants();
     @EventHandler
     public void onItemBroke(PlayerItemBreakEvent e) {
         Player player = e.getPlayer();
         ItemStack stack = e.getBrokenItem().clone();
 
-        if (stack == null) return;
         if(!isAllowed(stack)) return;
 
         player.getInventory().remove(stack);
@@ -45,21 +45,19 @@ public class ItemListener implements Listener {
 
 
     private boolean isAllowed(ItemStack stack) {
-        if(!allowedMats.contains(stack.getType())) return false;
-        if(stack.getItemMeta().hasLore()) {
+        if (!allowedMats.contains(stack.getType())) return false;
+        if (stack.getItemMeta().hasLore()) {
             List<String> lore = new ArrayList<>(stack.getItemMeta().getLore());
             for (String str : lore) {
-                if(ChatColor.stripColor(str).contains(ChatColor.stripColor("Restore"))) {
-                    return false;
+                for (String ench : blacklistedEnchants) {
+                    if (ChatColor.stripColor(str.toLowerCase()).contains(ChatColor.stripColor(ench.toLowerCase()))) {
+                        return false;
+                    }
                 }
             }
         }
 
-
         return true;
     }
-
-
-
 
 }

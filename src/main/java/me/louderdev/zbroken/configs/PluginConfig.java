@@ -1,5 +1,6 @@
 package me.louderdev.zbroken.configs;
 
+import lombok.Getter;
 import me.louderdev.zbroken.ZBroken;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -26,6 +27,9 @@ public class PluginConfig {
     public static String REMOVE_MESSAGE = getYamlConfig().getString("MESSAGE.REMOVE");
 
     public static List<String> allowedMaterialAsString = getYamlConfig().getStringList("CONFIG.ALLOWED_ITEM");
+
+    @Getter
+    static final List<String> blacklistedEnchants = getYamlConfig().getStringList("CONFIG.BLACKLISTED_ENCHANT");
 
 
     public static Set<Material> getAllowedMaterial() {

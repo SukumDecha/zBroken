@@ -4,6 +4,8 @@ CONFIG:
     - "DIAMOND_PICKAXE"
     - "IRON_PICKAXE"
     - "WOODEN_PICKAXE"
+  BLACKLISTED_ENCHANT:
+    - "Restore"
   INVENTORY:
     BACKPACK_MENU:
       TITLE: "&6Pick your broken item here..."
